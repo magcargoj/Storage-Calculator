@@ -1,0 +1,51 @@
+[
+  {
+    "id": "switch2",
+    "label": "Nintendo Switch 2",
+    "category": "Nintendo",
+    "sd_type": "express",
+    "ssd_type": null
+  },
+  {
+    "id": "switch",
+    "label": "Nintendo Switch (OLED/Lite)",
+    "category": "Nintendo",
+    "sd_type": "uhs1",
+    "ssd_type": null
+  },
+  {
+    "id": "deck",
+    "label": "Steam Deck (LCD/OLED)",
+    "category": "Valve",
+    "sd_type": "uhs1",
+    "ssd_type": "2230"
+  },
+  {
+    "id": "rog",
+    "label": "ROG Ally / Ally X",
+    "category": "PC Handhelds",
+    "sd_type": "uhs2",
+    "ssd_type": "2280"
+  },
+  {
+    "id": "legion",
+    "label": "Lenovo Legion Go",
+    "category": "PC Handhelds",
+    "sd_type": "uhs2",
+    "ssd_type": "2242"
+  },
+  {
+    "id": "miyoo",
+    "label": "Miyoo Mini / Anbernic",
+    "category": "Retro",
+    "sd_type": "uhs1",
+    "ssd_type": null
+  },
+  {
+    "id": "odin",
+    "label": "AYN Odin 2 / Retroid",
+    "category": "Retro",
+    "sd_type": "uhs1",
+    "ssd_type": null
+  }
+]
