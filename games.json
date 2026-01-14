@@ -1,92 +1,368 @@
 [
   {
+    "id": "cs2",
+    "title": "Counter-Strike 2",
+    "sizes": { "pc": 35, "switch2": null, "switch": null },
+    "tags": ["fps", "multiplayer", "valve"]
+  },
+  {
+    "id": "dota2",
+    "title": "Dota 2",
+    "sizes": { "pc": 45, "switch2": null, "switch": null },
+    "tags": ["moba", "strategy", "valve"]
+  },
+  {
+    "id": "pubg",
+    "title": "PUBG: BATTLEGROUNDS",
+    "sizes": { "pc": 40, "switch2": 30, "switch": null },
+    "tags": ["battle royale", "shooter"]
+  },
+  {
+    "id": "apex",
+    "title": "Apex Legends",
+    "sizes": { "pc": 75, "switch2": 55, "switch": 30 },
+    "tags": ["battle royale", "fps", "scifi"]
+  },
+  {
+    "id": "marvel_rivals",
+    "title": "Marvel Rivals",
+    "sizes": { "pc": 30, "switch2": 25, "switch": null },
+    "tags": ["shooter", "hero", "multiplayer"]
+  },
+  {
     "id": "cod_hq",
-    "title": "Call of Duty HQ",
+    "title": "Call of Duty HQ (MW3/BO6)",
     "sizes": { "pc": 210, "switch2": 150, "switch": null },
-    "tags": ["shooter", "fps", "multiplayer"]
+    "tags": ["fps", "shooter", "action"]
+  },
+  {
+    "id": "bf6",
+    "title": "Battlefield 6",
+    "sizes": { "pc": 110, "switch2": 85, "switch": null },
+    "tags": ["fps", "shooter", "war"]
+  },
+  {
+    "id": "stardew",
+    "title": "Stardew Valley",
+    "sizes": { "pc": 1, "switch2": 1, "switch": 1 },
+    "tags": ["farming", "indie", "rpg"]
+  },
+  {
+    "id": "warframe",
+    "title": "Warframe",
+    "sizes": { "pc": 40, "switch2": 35, "switch": 17 },
+    "tags": ["scifi", "looter", "shooter"]
+  },
+  {
+    "id": "gta5",
+    "title": "Grand Theft Auto V",
+    "sizes": { "pc": 110, "switch2": 70, "switch": null },
+    "tags": ["open world", "crime", "action"]
+  },
+  {
+    "id": "dbd",
+    "title": "Dead by Daylight",
+    "sizes": { "pc": 30, "switch2": 25, "switch": 15 },
+    "tags": ["horror", "multiplayer"]
+  },
+  {
+    "id": "rust",
+    "title": "Rust",
+    "sizes": { "pc": 35, "switch2": null, "switch": null },
+    "tags": ["survival", "multiplayer"]
+  },
+  {
+    "id": "terraria",
+    "title": "Terraria",
+    "sizes": { "pc": 1, "switch2": 1, "switch": 1 },
+    "tags": ["indie", "sandbox", "adventure"]
   },
   {
     "id": "bg3",
     "title": "Baldur's Gate 3",
-    "sizes": { "pc": 150, "switch2": null, "switch": null },
-    "tags": ["rpg", "strategy"]
+    "sizes": { "pc": 150, "switch2": 120, "switch": null },
+    "tags": ["rpg", "dnd", "strategy"]
   },
   {
-    "id": "mk_world",
-    "title": "Mario Kart World",
-    "sizes": { "pc": null, "switch2": 24, "switch": null },
-    "tags": ["racing", "nintendo"]
-  },
-  {
-    "id": "dk_bananza",
-    "title": "Donkey Kong Bananza",
-    "sizes": { "pc": null, "switch2": 10, "switch": null },
-    "tags": ["platformer", "nintendo"]
-  },
-  {
-    "id": "cp2077",
-    "title": "Cyberpunk 2077",
-    "sizes": { "pc": 70, "switch2": 57, "switch": null },
-    "tags": ["rpg", "open world"]
-  },
-  {
-    "id": "totk",
-    "title": "Zelda: Tears of Kingdom",
-    "sizes": { "pc": null, "switch2": 16, "switch": 16 },
-    "tags": ["adventure", "nintendo"]
-  },
-  {
-    "id": "gta5",
-    "title": "GTA V",
-    "sizes": { "pc": 110, "switch2": 65, "switch": null },
-    "tags": ["open world", "action"]
-  },
-  {
-    "id": "starfield",
-    "title": "Starfield",
-    "sizes": { "pc": 125, "switch2": null, "switch": null },
-    "tags": ["rpg", "space"]
-  },
-  {
-    "id": "wonder",
-    "title": "Super Mario Wonder",
-    "sizes": { "pc": null, "switch2": 4, "switch": 4 },
-    "tags": ["platformer", "nintendo"]
-  },
-  {
-    "id": "er",
-    "title": "Elden Ring",
+    "id": "r6",
+    "title": "Rainbow Six Siege",
     "sizes": { "pc": 60, "switch2": 45, "switch": null },
-    "tags": ["rpg", "souls"]
+    "tags": ["fps", "tactical", "shooter"]
+  },
+  {
+    "id": "naraka",
+    "title": "NARAKA: BLADEPOINT",
+    "sizes": { "pc": 35, "switch2": 30, "switch": null },
+    "tags": ["battle royale", "melee"]
+  },
+  {
+    "id": "fc26",
+    "title": "EA SPORTS FC 26",
+    "sizes": { "pc": 65, "switch2": 50, "switch": 30 },
+    "tags": ["sports", "soccer"]
+  },
+  {
+    "id": "helldivers2",
+    "title": "HELLDIVERS 2",
+    "sizes": { "pc": 30, "switch2": 25, "switch": null },
+    "tags": ["scifi", "shooter", "coop"]
+  },
+  {
+    "id": "tf2",
+    "title": "Team Fortress 2",
+    "sizes": { "pc": 25, "switch2": null, "switch": null },
+    "tags": ["fps", "class based", "valve"]
+  },
+  {
+    "id": "l4d2",
+    "title": "Left 4 Dead 2",
+    "sizes": { "pc": 15, "switch2": null, "switch": null },
+    "tags": ["zombie", "fps", "valve"]
+  },
+  {
+    "id": "slay_spire",
+    "title": "Slay the Spire",
+    "sizes": { "pc": 1, "switch2": 1, "switch": 1 },
+    "tags": ["card", "roguelike", "indie"]
+  },
+  {
+    "id": "poe2",
+    "title": "Path of Exile 2",
+    "sizes": { "pc": 60, "switch2": 50, "switch": null },
+    "tags": ["arpg", "rpg", "free"]
   },
   {
     "id": "rdr2",
     "title": "Red Dead Redemption 2",
-    "sizes": { "pc": 120, "switch2": 80, "switch": null },
-    "tags": ["open world", "cowboy"]
+    "sizes": { "pc": 120, "switch2": 90, "switch": null },
+    "tags": ["open world", "cowboy", "story"]
   },
   {
-    "id": "hades2",
-    "title": "Hades II",
-    "sizes": { "pc": 20, "switch2": 15, "switch": 15 },
-    "tags": ["indie", "roguelike"]
+    "id": "cp2077",
+    "title": "Cyberpunk 2077",
+    "sizes": { "pc": 70, "switch2": 55, "switch": null },
+    "tags": ["open world", "rpg", "scifi"]
+  },
+  {
+    "id": "ow2",
+    "title": "Overwatch 2",
+    "sizes": { "pc": 50, "switch2": 40, "switch": 30 },
+    "tags": ["fps", "hero", "blizzard"]
+  },
+  {
+    "id": "vrchat",
+    "title": "VRChat",
+    "sizes": { "pc": 10, "switch2": null, "switch": null },
+    "tags": ["social", "vr"]
+  },
+  {
+    "id": "elden_ring",
+    "title": "ELDEN RING",
+    "sizes": { "pc": 60, "switch2": 45, "switch": null },
+    "tags": ["rpg", "souls", "open world"]
+  },
+  {
+    "id": "beamng",
+    "title": "BeamNG.drive",
+    "sizes": { "pc": 45, "switch2": null, "switch": null },
+    "tags": ["simulation", "driving"]
+  },
+  {
+    "id": "project_zomboid",
+    "title": "Project Zomboid",
+    "sizes": { "pc": 5, "switch2": 5, "switch": null },
+    "tags": ["survival", "zombie", "indie"]
+  },
+  {
+    "id": "rocket_league",
+    "title": "Rocket League",
+    "sizes": { "pc": 25, "switch2": 20, "switch": 15 },
+    "tags": ["sports", "cars"]
+  },
+  {
+    "id": "mh_wilds",
+    "title": "Monster Hunter Wilds",
+    "sizes": { "pc": 90, "switch2": 70, "switch": null },
+    "tags": ["action", "rpg", "hunting"]
+  },
+  {
+    "id": "sims4",
+    "title": "The Sims 4",
+    "sizes": { "pc": 20, "switch2": 18, "switch": 15 },
+    "tags": ["simulation", "casual"]
+  },
+  {
+    "id": "palworld",
+    "title": "Palworld",
+    "sizes": { "pc": 20, "switch2": 18, "switch": null },
+    "tags": ["survival", "creature", "open world"]
+  },
+  {
+    "id": "garrys_mod",
+    "title": "Garry's Mod",
+    "sizes": { "pc": 10, "switch2": null, "switch": null },
+    "tags": ["sandbox", "valve"]
+  },
+  {
+    "id": "skyrim",
+    "title": "Skyrim Special Edition",
+    "sizes": { "pc": 15, "switch2": 15, "switch": 15 },
+    "tags": ["rpg", "fantasy", "open world"]
+  },
+  {
+    "id": "fallout4",
+    "title": "Fallout 4",
+    "sizes": { "pc": 35, "switch2": 30, "switch": null },
+    "tags": ["rpg", "open world", "post-apoc"]
+  },
+  {
+    "id": "sf6",
+    "title": "Street Fighter 6",
+    "sizes": { "pc": 60, "switch2": 45, "switch": null },
+    "tags": ["fighting", "capcom"]
+  },
+  {
+    "id": "civ6",
+    "title": "Civilization VI",
+    "sizes": { "pc": 15, "switch2": 12, "switch": 10 },
+    "tags": ["strategy", "4x"]
+  },
+  {
+    "id": "wuthering",
+    "title": "Wuthering Waves",
+    "sizes": { "pc": 30, "switch2": 25, "switch": null },
+    "tags": ["gacha", "rpg", "anime"]
+  },
+  {
+    "id": "kcd2",
+    "title": "Kingdom Come: Deliverance II",
+    "sizes": { "pc": 90, "switch2": null, "switch": null },
+    "tags": ["rpg", "medieval", "realistic"]
+  },
+  {
+    "id": "7days",
+    "title": "7 Days to Die",
+    "sizes": { "pc": 15, "switch2": 12, "switch": null },
+    "tags": ["survival", "zombie"]
+  },
+  {
+    "id": "dayz",
+    "title": "DayZ",
+    "sizes": { "pc": 25, "switch2": null, "switch": null },
+    "tags": ["survival", "fps"]
   },
   {
     "id": "silksong",
     "title": "Hollow Knight: Silksong",
-    "sizes": { "pc": 10, "switch2": 8, "switch": 8 },
-    "tags": ["indie", "platformer"]
+    "sizes": { "pc": 9, "switch2": 9, "switch": 9 },
+    "tags": ["indie", "platformer", "metroidvania"]
+  },
+  {
+    "id": "forza5",
+    "title": "Forza Horizon 5",
+    "sizes": { "pc": 110, "switch2": null, "switch": null },
+    "tags": ["racing", "cars"]
+  },
+  {
+    "id": "brawlhalla",
+    "title": "Brawlhalla",
+    "sizes": { "pc": 1, "switch2": 1, "switch": 1 },
+    "tags": ["fighting", "platformer"]
+  },
+  {
+    "id": "deadlock",
+    "title": "Deadlock",
+    "sizes": { "pc": 25, "switch2": null, "switch": null },
+    "tags": ["moba", "shooter", "valve"]
+  },
+  {
+    "id": "phasmophobia",
+    "title": "Phasmophobia",
+    "sizes": { "pc": 20, "switch2": 18, "switch": null },
+    "tags": ["horror", "coop"]
+  },
+  {
+    "id": "nba2k26",
+    "title": "NBA 2K26",
+    "sizes": { "pc": 160, "switch2": 60, "switch": 60 },
+    "tags": ["sports", "basketball"]
+  },
+  {
+    "id": "witcher3",
+    "title": "The Witcher 3: Wild Hunt",
+    "sizes": { "pc": 50, "switch2": 40, "switch": 32 },
+    "tags": ["rpg", "fantasy", "story"]
+  },
+  {
+    "id": "balatro",
+    "title": "Balatro",
+    "sizes": { "pc": 0.5, "switch2": 0.5, "switch": 0.5 },
+    "tags": ["card", "roguelike", "indie"]
+  },
+  {
+    "id": "fm26",
+    "title": "Football Manager 26",
+    "sizes": { "pc": 7, "switch2": 5, "switch": 5 },
+    "tags": ["sports", "simulation"]
+  },
+  {
+    "id": "hollow_knight",
+    "title": "Hollow Knight",
+    "sizes": { "pc": 9, "switch2": 9, "switch": 9 },
+    "tags": ["indie", "platformer", "metroidvania"]
+  },
+  {
+    "id": "age2",
+    "title": "Age of Empires II: DE",
+    "sizes": { "pc": 30, "switch2": null, "switch": null },
+    "tags": ["strategy", "rts"]
+  },
+  {
+    "id": "rimworld",
+    "title": "RimWorld",
+    "sizes": { "pc": 1, "switch2": 1, "switch": null },
+    "tags": ["simulation", "colony", "indie"]
+  },
+  {
+    "id": "farming25",
+    "title": "Farming Simulator 25",
+    "sizes": { "pc": 35, "switch2": 25, "switch": null },
+    "tags": ["simulation", "farming"]
+  },
+  {
+    "id": "destiny2",
+    "title": "Destiny 2",
+    "sizes": { "pc": 105, "switch2": null, "switch": null },
+    "tags": ["fps", "looter", "mmo"]
+  },
+  {
+    "id": "ark_ascended",
+    "title": "ARK: Survival Ascended",
+    "sizes": { "pc": 130, "switch2": 90, "switch": null },
+    "tags": ["survival", "dinosaur"]
+  },
+  {
+    "id": "finals",
+    "title": "THE FINALS",
+    "sizes": { "pc": 20, "switch2": 18, "switch": null },
+    "tags": ["fps", "shooter", "action"]
+  },
+  {
+    "id": "among_us",
+    "title": "Among Us",
+    "sizes": { "pc": 0.5, "switch2": 0.5, "switch": 0.5 },
+    "tags": ["social", "casual", "indie"]
+  },
+  {
+    "id": "space_marine_2",
+    "title": "Warhammer 40k: Space Marine 2",
+    "sizes": { "pc": 75, "switch2": 55, "switch": null },
+    "tags": ["action", "shooter", "warhammer"]
   },
   {
     "id": "generic_indie",
-    "title": "Generic Indie Game (x5)",
-    "sizes": { "pc": 10, "switch2": 10, "switch": 10 },
+    "title": "Generic Indie Games (x10)",
+    "sizes": { "pc": 15, "switch2": 15, "switch": 15 },
     "tags": ["indie"]
-  },
-  {
-    "id": "generic_aaa",
-    "title": "Generic AAA Game",
-    "sizes": { "pc": 80, "switch2": 60, "switch": 30 },
-    "tags": ["aaa"]
   }
 ]
