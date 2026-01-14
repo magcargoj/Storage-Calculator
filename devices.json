@@ -21,30 +21,79 @@
     "ssd_type": "2230"
   },
   {
-    "id": "rog",
-    "label": "ROG Ally / Ally X",
+    "id": "ally",
+    "label": "ROG Ally (Original/Z1E)",
+    "category": "PC Handhelds",
+    "sd_type": "uhs2",
+    "ssd_type": "2230"
+  },
+  {
+    "id": "ally_x",
+    "label": "ROG Ally X",
     "category": "PC Handhelds",
     "sd_type": "uhs2",
     "ssd_type": "2280"
   },
   {
     "id": "legion",
-    "label": "Lenovo Legion Go",
+    "label": "Lenovo Legion Go (Gen 1)",
     "category": "PC Handhelds",
     "sd_type": "uhs2",
     "ssd_type": "2242"
   },
   {
-    "id": "miyoo",
-    "label": "Miyoo Mini / Anbernic",
-    "category": "Retro",
+    "id": "legion2",
+    "label": "Lenovo Legion Go 2",
+    "category": "PC Handhelds",
+    "sd_type": "uhs2",
+    "ssd_type": "2280"
+  },
+  {
+    "id": "legion_s",
+    "label": "Lenovo Legion Go S (Lite)",
+    "category": "PC Handhelds",
+    "sd_type": "uhs2",
+    "ssd_type": "2242"
+  },
+  {
+    "id": "odin2",
+    "label": "AYN Odin 2 / Mini",
+    "category": "High-End Android",
     "sd_type": "uhs1",
     "ssd_type": null
   },
   {
-    "id": "odin",
-    "label": "AYN Odin 2 / Retroid",
-    "category": "Retro",
+    "id": "retroid",
+    "label": "Retroid Pocket 4 Pro",
+    "category": "High-End Android",
+    "sd_type": "uhs1",
+    "ssd_type": null
+  },
+  {
+    "id": "anbernic_h",
+    "label": "Anbernic RG35XX / H / SP",
+    "category": "Retro Linux",
+    "sd_type": "uhs1",
+    "ssd_type": null
+  },
+  {
+    "id": "powkiddy",
+    "label": "Powkiddy RGB30 / V10",
+    "category": "Retro Linux",
+    "sd_type": "uhs1",
+    "ssd_type": null
+  },
+  {
+    "id": "miyoo",
+    "label": "Miyoo Mini / Plus",
+    "category": "Retro Linux",
+    "sd_type": "uhs1",
+    "ssd_type": null
+  },
+  {
+    "id": "analogue",
+    "label": "Analogue Pocket",
+    "category": "FPGA",
     "sd_type": "uhs1",
     "ssd_type": null
   }
