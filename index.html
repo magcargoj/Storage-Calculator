@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Handheld Storage Calculator | Steam Deck, Switch 2 & ROG Ally</title>
@@ -17,14 +17,17 @@
 
     <meta property="og:title" content="Handheld Storage Calculator 💾">
     <meta property="og:description" content="Calculate exactly how many games fit on your Steam Deck or Switch.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://magcargoj.github.io/Storage-Calculator/"> 
 
     <style>
         :root {
             --bg: #0f172a; --surface: #1e293b; --primary: #8b5cf6;
             --accent: #06b6d4; --text: #f8fafc; --border: #334155;
+            --warning: #f59e0b; --danger: #ef4444;
         }
         body {
-            font-family: 'Inter', system-ui, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             background-color: var(--bg); color: var(--text);
             margin: 0; padding: 20px; padding-bottom: 180px;
         }
@@ -64,7 +67,7 @@
             border-radius: 12px; padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px;
         }
         .retro-item { display: flex; justify-content: space-between; align-items: center; }
-        .retro-input { width: 70px; padding: 8px; text-align: center; background: var(--bg); }
+        .retro-input { width: 70px; padding: 8px; text-align: center; background: var(--bg); border: 1px solid var(--border); color: white; border-radius: 6px;}
 
         /* Dock */
         .dock {
@@ -95,10 +98,7 @@
             .total-box { text-align: center; margin-bottom: 10px; }
         }
     </style>
-    
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💾</text></svg>">
 </head>
-
 <body>
 
 <div class="container">
@@ -111,19 +111,19 @@
     </div>
 
     <div style="margin-bottom: 30px;">
-        <label>2. Retro Collection (Qty)</label>
+        <label>2. Add Modern Games</label>
+        <input type="text" id="searchInput" placeholder="Search games...">
+        <div class="game-grid" id="gameGrid"></div>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+        <label>3. Retro Collection (Qty)</label>
         <div class="retro-box">
             <div class="retro-item"><span>NES/SNES/GBA</span><input type="number" class="retro-input" data-size="0.01"></div>
             <div class="retro-item"><span>N64/DS/Dreamcast</span><input type="number" class="retro-input" data-size="0.2"></div>
             <div class="retro-item"><span>PS1/PSP</span><input type="number" class="retro-input" data-size="0.6"></div>
             <div class="retro-item"><span>PS2/GameCube</span><input type="number" class="retro-input" data-size="3.0"></div>
         </div>
-    </div>
-
-    <div>
-        <label>3. Add Modern Games</label>
-        <input type="text" id="searchInput" placeholder="Search games...">
-        <div class="game-grid" id="gameGrid"></div>
     </div>
 </div>
 
@@ -139,6 +139,11 @@
         </div>
     </div>
 </div>
+
+<footer style="margin-top: 60px; text-align: center; color: #64748b; font-size: 0.8rem; padding-bottom: 20px;">
+    <p>Handheld Storage Master is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com.</p>
+    <p>&copy; 2026 Handheld Storage Master. Not affiliated with Valve, Nintendo, or ASUS.</p>
+</footer>
 
 <script>
     // GLOBAL STATE
@@ -214,21 +219,17 @@
         const term = document.getElementById('searchInput').value.toLowerCase();
         
         // Determine platform key for sizes (e.g. "pc", "switch2", "switch")
-        // Mapping logic: if device ID contains 'switch2' -> switch2, 'switch' -> switch, else 'pc'
         let sizeKey = 'pc';
         if (state.device.id.includes('switch2')) sizeKey = 'switch2';
         else if (state.device.id.includes('switch')) sizeKey = 'switch';
 
         const filtered = db.games.filter(g => {
-            // Must have size for this platform
             if (g.sizes[sizeKey] === null) return false;
             return g.title.toLowerCase().includes(term);
         });
 
-        // Sort selected first
         filtered.sort((a,b) => (state.selectedGames.has(a.id) ? -1 : 1));
 
-        // Show max 12 if no search
         const toShow = term ? filtered : filtered.slice(0, 12);
 
         toShow.forEach(g => {
@@ -262,7 +263,6 @@
             total += (parseInt(i.value)||0) * parseFloat(i.dataset.size);
         });
 
-        // Only add OS buffer if games selected
         if(total > 0) total = Math.ceil(total + 20);
 
         // 2. Render Results
@@ -278,15 +278,16 @@
         dock.classList.remove('hidden');
         totalDisp.innerHTML = `${total} <span style="font-size:1rem;color:var(--primary)">GB</span>`;
 
-        // 3. Recommendation Logic (The Brains)
+        // 3. Recommendation Logic (IMPROVED)
         let html = '';
+        const MAX_SD_SIZE = 1536; // 1.5TB
         
         // Find best SD card
         const sdType = state.device.sd_type; 
         const sdProducts = db.products[sdType] || [];
-        // Simple logic: find smallest card > total
         let bestSD = sdProducts.find(p => p.cap >= total);
-        if (!bestSD && sdProducts.length > 0) bestSD = sdProducts[sdProducts.length-1]; // Max out
+        // If nothing fits, grab the largest possible one
+        if (!bestSD && sdProducts.length > 0) bestSD = sdProducts[sdProducts.length-1];
 
         // Find best SSD (if supported)
         let bestSSD = null;
@@ -296,11 +297,17 @@
             if (!bestSSD && ssdList.length > 0) bestSSD = ssdList[ssdList.length-1];
         }
 
-        // SCENARIO 1: Device has SSD + SD (e.g. Steam Deck)
+        // SCENARIO 1: Device supports SSD
         if (state.device.ssd_type) {
-            if (total > 800) {
+            if (total > MAX_SD_SIZE) {
+                // OVERFLOW: Too big for any MicroSD
+                recText.innerHTML = `⚠️ <strong>Limit Reached!</strong> You cannot fit this on a MicroSD card. You MUST upgrade your SSD.`;
+                if(bestSSD) html += `<a href="${bestSSD.link}" target="_blank" class="btn btn-ssd">${bestSSD.name}<small>Internal Upgrade</small></a>`;
+                else html += `<div class="btn btn-ssd" style="opacity:0.6; cursor:default;">No SSD Large Enough</div>`;
+            } 
+            else if (total > 800) {
                 // Large Library: Recommend SSD
-                recText.innerHTML = `🔥 <strong>Power User!</strong> For ${total}GB, you need an SSD upgrade.`;
+                recText.innerHTML = `🔥 <strong>Power User!</strong> For ${total}GB, we highly recommend an SSD upgrade.`;
                 if(bestSSD) html += `<a href="${bestSSD.link}" target="_blank" class="btn btn-ssd">${bestSSD.name}<small>Internal Upgrade</small></a>`;
                 html += `<a href="${bestSD.link}" target="_blank" class="btn btn-sd">${bestSD.name}<small>MicroSD Backup</small></a>`;
             } else {
@@ -312,8 +319,14 @@
         } 
         // SCENARIO 2: SD Only Device (Switch / Retro)
         else {
-            recText.innerHTML = `Recommended Card for <strong>${state.device.label}</strong>:`;
-            if(bestSD) html += `<a href="${bestSD.link}" target="_blank" class="btn btn-sd">${bestSD.name}<small>View on Amazon</small></a>`;
+            if (total > MAX_SD_SIZE) {
+                recText.innerHTML = `⚠️ <strong>Too Big!</strong> You will need multiple MicroSD cards.`;
+                html += `<a href="${bestSD.link}" target="_blank" class="btn btn-sd">${bestSD.name}<small>Buy Card #1</small></a>`;
+                html += `<a href="${bestSD.link}" target="_blank" class="btn btn-sd" style="opacity:0.8">${bestSD.name}<small>Buy Card #2</small></a>`;
+            } else {
+                recText.innerHTML = `Recommended Card for <strong>${state.device.label}</strong>:`;
+                if(bestSD) html += `<a href="${bestSD.link}" target="_blank" class="btn btn-sd">${bestSD.name}<small>View on Amazon</small></a>`;
+            }
         }
 
         btnBox.innerHTML = html;
@@ -321,10 +334,5 @@
 
     init();
 </script>
-
-  <footer style="margin-top: 60px; text-align: center; color: #64748b; font-size: 0.8rem; padding-bottom: 20px;">
-    <p>Handheld Storage Master is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com.</p>
-    <p>&copy; 2026 Handheld Storage Master. Not affiliated with Valve, Nintendo, or ASUS.</p>
-</footer>
 </body>
 </html>
