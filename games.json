@@ -1,0 +1,92 @@
+[
+  {
+    "id": "cod_hq",
+    "title": "Call of Duty HQ",
+    "sizes": { "pc": 210, "switch2": 150, "switch": null },
+    "tags": ["shooter", "fps", "multiplayer"]
+  },
+  {
+    "id": "bg3",
+    "title": "Baldur's Gate 3",
+    "sizes": { "pc": 150, "switch2": null, "switch": null },
+    "tags": ["rpg", "strategy"]
+  },
+  {
+    "id": "mk_world",
+    "title": "Mario Kart World",
+    "sizes": { "pc": null, "switch2": 24, "switch": null },
+    "tags": ["racing", "nintendo"]
+  },
+  {
+    "id": "dk_bananza",
+    "title": "Donkey Kong Bananza",
+    "sizes": { "pc": null, "switch2": 10, "switch": null },
+    "tags": ["platformer", "nintendo"]
+  },
+  {
+    "id": "cp2077",
+    "title": "Cyberpunk 2077",
+    "sizes": { "pc": 70, "switch2": 57, "switch": null },
+    "tags": ["rpg", "open world"]
+  },
+  {
+    "id": "totk",
+    "title": "Zelda: Tears of Kingdom",
+    "sizes": { "pc": null, "switch2": 16, "switch": 16 },
+    "tags": ["adventure", "nintendo"]
+  },
+  {
+    "id": "gta5",
+    "title": "GTA V",
+    "sizes": { "pc": 110, "switch2": 65, "switch": null },
+    "tags": ["open world", "action"]
+  },
+  {
+    "id": "starfield",
+    "title": "Starfield",
+    "sizes": { "pc": 125, "switch2": null, "switch": null },
+    "tags": ["rpg", "space"]
+  },
+  {
+    "id": "wonder",
+    "title": "Super Mario Wonder",
+    "sizes": { "pc": null, "switch2": 4, "switch": 4 },
+    "tags": ["platformer", "nintendo"]
+  },
+  {
+    "id": "er",
+    "title": "Elden Ring",
+    "sizes": { "pc": 60, "switch2": 45, "switch": null },
+    "tags": ["rpg", "souls"]
+  },
+  {
+    "id": "rdr2",
+    "title": "Red Dead Redemption 2",
+    "sizes": { "pc": 120, "switch2": 80, "switch": null },
+    "tags": ["open world", "cowboy"]
+  },
+  {
+    "id": "hades2",
+    "title": "Hades II",
+    "sizes": { "pc": 20, "switch2": 15, "switch": 15 },
+    "tags": ["indie", "roguelike"]
+  },
+  {
+    "id": "silksong",
+    "title": "Hollow Knight: Silksong",
+    "sizes": { "pc": 10, "switch2": 8, "switch": 8 },
+    "tags": ["indie", "platformer"]
+  },
+  {
+    "id": "generic_indie",
+    "title": "Generic Indie Game (x5)",
+    "sizes": { "pc": 10, "switch2": 10, "switch": 10 },
+    "tags": ["indie"]
+  },
+  {
+    "id": "generic_aaa",
+    "title": "Generic AAA Game",
+    "sizes": { "pc": 80, "switch2": 60, "switch": 30 },
+    "tags": ["aaa"]
+  }
+]
