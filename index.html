@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handheld Storage Master 2.0</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --primary: #8b5cf6;
+            --accent: #06b6d4;
+            --text: #f8fafc;
+            --border: #334155;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            padding-bottom: 120px; /* Space for dock */
+        }
+
+        .container { max-width: 800px; margin: 0 auto; }
+
+        h1 {
+            text-align: center;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .subtitle { text-align: center; color: #94a3b8; margin-bottom: 40px; }
+
+        /* Controls */
+        .control-group { margin-bottom: 30px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--accent); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        select, input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            background: var(--surface);
+            border: 2px solid var(--border);
+            color: white;
+            border-radius: 12px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        select:focus, input:focus { outline: none; border-color: var(--primary); }
+
+        /* Search Bar */
+        .search-box { position: relative; margin-bottom: 20px; }
+        .search-box input { padding-left: 40px; }
+        .search-icon {
+            position: absolute; left: 15px; top: 50%; transform: translateY(-50%);
+            opacity: 0.5; width: 18px; height: 18px;
+        }
+
+        /* Game Grid */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+        }
+        .game-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+            position: relative;
+        }
+        .game-card:hover { transform: translateY(-2px); border-color: #64748b; }
+        .game-card.selected {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.1);
+        }
+        .game-title { font-weight: 600; font-size: 0.95rem; display: block; line-height: 1.3; }
+        .game-size { font-size: 0.8rem; color: #94a3b8; display: block; margin-top: 5px; }
+
+        /* Results Dock */
+        .dock {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border);
+            padding: 20px;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
+            z-index: 100;
+        }
+        .dock-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .total-section { flex: 1; }
+        .total-val { font-size: 2.2rem; font-weight: 800; line-height: 1; }
+        .rec-section { flex: 2; text-align: right; }
+        
+        .buy-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 15px;
+            transition: 0.2s;
+        }
+        .buy-btn:hover { background: #7c3aed; transform: scale(1.05); }
+
+        .hidden { display: none !important; }
+        .loader { text-align: center; padding: 20px; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Handheld Storage Master</h1>
+    <p class="subtitle">Optimize your library for Switch 2, Steam Deck & Retro Devices</p>
+
+    <div class="control-group">
+        <label>1. Select Device</label>
+        <select id="deviceSelect">
+            <optgroup label="Nintendo">
+                <option value="switch2">Nintendo Switch 2 (MicroSD Express)</option>
+                <option value="switch">Nintendo Switch / OLED / Lite</option>
+            </optgroup>
+            <optgroup label="Valve">
+                <option value="deck">Steam Deck (LCD/OLED)</option>
+            </optgroup>
+            <optgroup label="PC Handhelds">
+                <option value="rog">ROG Ally / Ally X</option>
+                <option value="legion">Legion Go</option>
+            </optgroup>
+            <optgroup label="Retro">
+                <option value="retro_low">Retro Handheld (Miyoo/Anbernic)</option>
+                <option value="retro_high">High-End Android (Odin 2/Retroid)</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <div class="control-group">
+        <label>2. Add Games</label>
+        <div class="search-box">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="searchInput" placeholder="Search for games (e.g. Zelda, Call of Duty)...">
+        </div>
+        
+        <div id="loader" class="loader">Loading database...</div>
+        <div class="game-grid" id="gameGrid"></div>
+    </div>
+</div>
+
+<div class="dock">
+    <div class="dock-inner">
+        <div class="total-section">
+            <div style="font-size:0.8rem; color:#94a3b8; text-transform: uppercase;">Total Needed</div>
+            <div class="total-val" id="totalDisplay">0 <span style="font-size:1rem; color:var(--primary)">GB</span></div>
+        </div>
+        <div class="rec-section">
+            <div id="recText" style="font-size:0.9rem; margin-bottom:5px;">Select games to see recommendations</div>
+            <a href="#" id="buyBtn" class="buy-btn" style="display:none">View on Amazon</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    let gamesDB = [];
+    let selectedGames = new Set();
+    const grid = document.getElementById('gameGrid');
+    const searchInput = document.getElementById('searchInput');
+    const deviceSelect = document.getElementById('deviceSelect');
+
+    // CONFIG: Map devices to the "size key" in the JSON
+    const deviceConfig = {
+        'switch2':   { key: 'switch2', label: 'Switch 2', protocol: 'Express' },
+        'switch':    { key: 'switch', label: 'Switch', protocol: 'UHS-I' },
+        'deck':      { key: 'pc', label: 'Steam Deck', protocol: 'UHS-I' },
+        'rog':       { key: 'pc', label: 'ROG Ally', protocol: 'UHS-II' },
+        'legion':    { key: 'pc', label: 'Legion Go', protocol: 'UHS-II' },
+        'retro_low': { key: 'switch', label: 'Retro', protocol: 'UHS-I' }, // Uses low sizes
+        'retro_high':{ key: 'switch', label: 'Android', protocol: 'UHS-I' }
+    };
+
+    // 1. Fetch JSON
+    fetch('games.json')
+        .then(response => response.json())
+        .then(data => {
+            gamesDB = data;
+            document.getElementById('loader').style.display = 'none';
+            renderGames();
+        })
+        .catch(err => {
+            document.getElementById('loader').innerText = "Error loading database. Ensure games.json is in the same folder.";
+        });
+
+    // 2. Render Grid
+    function renderGames() {
+        grid.innerHTML = '';
+        const currentDev = deviceConfig[deviceSelect.value];
+        const term = searchInput.value.toLowerCase();
+
+        // Filter: Must match search AND have a size for this platform
+        const visibleGames = gamesDB.filter(game => {
+            const hasSize = game.sizes[currentDev.key] !== null;
+            const matchesSearch = game.title.toLowerCase().includes(term);
+            return hasSize && matchesSearch;
+        });
+
+        // Sort: Selected first, then by Popularity (index order in JSON)
+        visibleGames.sort((a, b) => {
+            const aSel = selectedGames.has(a.id) ? 1 : 0;
+            const bSel = selectedGames.has(b.id) ? 1 : 0;
+            return bSel - aSel;
+        });
+
+        // Limit to top 12 if no search term (to keep it clean)
+        const toShow = term ? visibleGames : visibleGames.slice(0, 12);
+
+        toShow.forEach(game => {
+            const size = game.sizes[currentDev.key];
+            const el = document.createElement('div');
+            el.className = `game-card ${selectedGames.has(game.id) ? 'selected' : ''}`;
+            el.innerHTML = `
+                <span class="game-title">${game.title}</span>
+                <span class="game-size">${size} GB</span>
+            `;
+            el.onclick = () => toggleGame(game.id);
+            grid.appendChild(el);
+        });
+        
+        if(toShow.length === 0) {
+            grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; color:#64748b;">No compatible games found for this device.</div>';
+        }
+    }
+
+    // 3. Logic
+    function toggleGame(id) {
+        if(selectedGames.has(id)) {
+            selectedGames.delete(id);
+        } else {
+            selectedGames.add(id);
+        }
+        renderGames(); // Re-render to update styling
+        calculate();
+    }
+
+    function calculate() {
+        const currentDev = deviceConfig[deviceSelect.value];
+        let total = 0;
+
+        selectedGames.forEach(id => {
+            const game = gamesDB.find(g => g.id === id);
+            if(game && game.sizes[currentDev.key]) {
+                total += game.sizes[currentDev.key];
+            }
+        });
+
+        // OS Buffer
+        total = Math.ceil(total + 15);
+
+        document.getElementById('totalDisplay').innerHTML = total + '<span style="font-size:1rem; color:var(--primary)">GB</span>';
+        updateRecommendation(total, currentDev);
+    }
+
+    // 4. Reset on Device Change
+    deviceSelect.addEventListener('change', () => {
+        selectedGames.clear(); // Clear list as requested
+        searchInput.value = ''; // Clear search
+        renderGames();
+        calculate();
+    });
+
+    searchInput.addEventListener('input', renderGames);
+
+    // 5. Recommendation Engine
+    function updateRecommendation(total, devConfig) {
+        const btn = document.getElementById('buyBtn');
+        const text = document.getElementById('recText');
+
+        if(total <= 15) {
+            text.innerText = "Select games to see recommendations";
+            btn.style.display = "none";
+            return;
+        }
+
+        btn.style.display = "inline-block";
+        let product = "";
+        let link = "";
+
+        // Logic split by Protocol (Express vs UHS-I)
+        if (devConfig.protocol === 'Express') {
+            // Switch 2 Logic
+            if(total < 240) {
+                product = "Samsung 256GB MicroSD Express";
+                link = "LINK_SW2_256";
+            } else if (total < 480) {
+                product = "SanDisk 512GB MicroSD Express";
+                link = "LINK_SW2_512";
+            } else {
+                product = "Lexar 1TB MicroSD Express";
+                link = "LINK_SW2_1TB";
+            }
+        } else {
+            // Standard Logic
+            if(total < 240) {
+                product = "Samsung EVO 256GB";
+                link = "LINK_STD_256";
+            } else if (total < 480) {
+                product = "Samsung EVO 512GB";
+                link = "LINK_STD_512";
+            } else {
+                product = "SanDisk Extreme 1TB";
+                link = "LINK_STD_1TB";
+            }
+        }
+
+        text.innerHTML = `Recommended for <strong>${devConfig.label}</strong>:`;
+        btn.innerHTML = `Get ${product} &rarr;`;
+        btn.href = link; // User must replace links manually
+    }
+</script>
+
+</body>
+</html>
