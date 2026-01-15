@@ -1,11 +1,11 @@
 {
   "uhs1": [
-    { "cap": 64, "name": "Samsung EVO 64GB", "link": "https://amazon.com/YOUR_LINK_HERE" },
-    { "cap": 128, "name": "Samsung EVO 128GB", "link": "https://amazon.com/YOUR_LINK_HERE" },
-    { "cap": 256, "name": "Samsung EVO 256GB", "link": "https://amazon.com/YOUR_LINK_HERE" },
-    { "cap": 512, "name": "Samsung EVO 512GB", "link": "https://amazon.com/YOUR_LINK_HERE" },
-    { "cap": 1024, "name": "SanDisk Extreme 1TB", "link": "https://amazon.com/YOUR_LINK_HERE" },
-    { "cap": 1536, "name": "SanDisk Ultra 1.5TB", "link": "https://amazon.com/YOUR_LINK_HERE" }
+    { "cap": 64, "name": "Samsung EVO 64GB", "link": "https://amzn.to/4bB9EVdB" },
+    { "cap": 128, "name": "Samsung EVO 128GB", "link": "https://amzn.to/49TZnSK" },
+    { "cap": 256, "name": "Samsung EVO 256GB", "link": "https://amzn.to/4bA12hA" },
+    { "cap": 512, "name": "Samsung EVO 512GB", "link": "https://amzn.to/3ZkiQWx" },
+    { "cap": 1024, "name": "SanDisk Extreme 1TB", "link": "https://amzn.to/4jK9a11" },
+    { "cap": 1536, "name": "SanDisk Ultra 1.5TB", "link": "https://amzn.to/3LeSulK" }
   ],
   "uhs2": [
     { "cap": 128, "name": "Lexar Gold 128GB (UHS-II)", "link": "https://amazon.com/YOUR_LINK_HERE" },
